@@ -57,3 +57,14 @@ async function predict() {
     
     const geminiText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
     
+    if (geminiText) {
+      document.getElementById("gemini").innerText = geminiText;
+    } else {
+      console.log('Full response structure:', JSON.stringify(data, null, 2));
+      document.getElementById("gemini").innerText = "No valid response structure from Gemini";
+    }
+  } catch (error) {
+    console.error('Error during prediction:', error);
+    document.getElementById("prediction").innerText = "Error: " + error.message;
+  }
+}
